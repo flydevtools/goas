@@ -1,11 +1,10 @@
 package main
 
 import (
-	"github.com/mikunalpha/goas/parser"
+	parserPkg "github.com/mikunalpha/goas/parser"
 	"github.com/mikunalpha/goas/writer"
 	"github.com/urfave/cli"
 	"log"
-	"os"
 )
 
 var version = "v1.0.1"
@@ -46,18 +45,19 @@ var flags = []cli.Flag{
 }
 
 func action(c *cli.Context) error {
-	p, err := parser.NewParser(
+	parser, err := parserPkg.NewParser(
 		c.GlobalString("module-path"),
 		c.GlobalString("main-file-path"),
 		c.GlobalString("handler-path"),
 		c.GlobalBool("debug"),
 		c.GlobalBool("strict"),
 		c.GlobalBool("schema-without-pkg"),
-		)
+	).Init()
+
 	if err != nil {
 		return err
 	}
-	openApiObject, err := p.Parse()
+	openApiObject, err := parser.Parse()
 	if err != nil {
 		return err
 	}
@@ -81,7 +81,14 @@ func main() {
 	app.Flags = flags
 	app.Action = action
 
-	err := app.Run(os.Args)
+	args := []string{
+		"goas",
+		"--module-path", "../dealer",
+		"--main-file-path", "../dealer/cmd/server/main.go",
+		"--output", "../dealer/documentation-spec.json",
+		"--schema-without-pkg", "true",
+	}
+	err := app.Run(args)
 	if err != nil {
 		log.Fatal("Error: ", err)
 	}

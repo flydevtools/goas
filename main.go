@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/mikunalpha/goas/parser"
-	"github.com/mikunalpha/goas/writer"
+	"github.com/flydevtools/goas/parser"
+	"github.com/flydevtools/goas/writer"
 	"github.com/urfave/cli"
 	"log"
 	"os"

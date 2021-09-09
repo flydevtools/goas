@@ -1,12 +1,13 @@
 package parser
 
 import (
-	"github.com/mikunalpha/go-module"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 	"unicode"
+
+	"github.com/mikunalpha/go-module"
 )
 
 func (p *parser) parseGoMod() error {

@@ -3,8 +3,6 @@ package parser
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/iancoleman/orderedmap"
-	. "github.com/mikunalpha/goas/openApi3Schema"
 	"go/ast"
 	goparser "go/parser"
 	"go/token"
@@ -13,6 +11,9 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+
+	. "github.com/flydevtools/goas/openApi3Schema"
+	"github.com/iancoleman/orderedmap"
 )
 
 func (p *parser) getPkgAst(pkgPath string) (map[string]*ast.Package, error) {

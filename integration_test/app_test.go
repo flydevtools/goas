@@ -2,8 +2,8 @@ package integration_test
 
 import (
 	"fmt"
-	"github.com/mikunalpha/goas/parser"
-	"github.com/mikunalpha/goas/writer"
+	"github.com/flydevtools/goas/parser"
+	"github.com/flydevtools/goas/writer"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"

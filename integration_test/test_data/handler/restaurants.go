@@ -1,7 +1,7 @@
 package handler
 
 import (
-	_ "github.com/mikunalpha/goas/model"
+	_ "github.com/flydevtools/goas/model"
 )
 
 // @Title Get restaurants list

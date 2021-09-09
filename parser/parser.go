@@ -2,20 +2,21 @@ package parser
 
 import (
 	"fmt"
-	. "github.com/mikunalpha/goas/openApi3Schema"
-	log "github.com/sirupsen/logrus"
 	"go/ast"
 	"os"
 	"os/user"
 	"path/filepath"
+
+	. "github.com/flydevtools/goas/openApi3Schema"
+	log "github.com/sirupsen/logrus"
 )
 
 type parser struct {
-	ModulePath string
-	ModuleName string
-	MainFilePath string
-	HandlerPath string
-	GoModFilePath string
+	ModulePath     string
+	ModuleName     string
+	MainFilePath   string
+	HandlerPath    string
+	GoModFilePath  string
 	GoModCachePath string
 
 	OpenAPI OpenAPIObject

@@ -2,13 +2,14 @@ package parser
 
 import (
 	"fmt"
-	"github.com/iancoleman/orderedmap"
-	. "github.com/mikunalpha/goas/openApi3Schema"
 	"go/ast"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
+
+	. "github.com/flydevtools/goas/openApi3Schema"
+	"github.com/iancoleman/orderedmap"
 )
 
 func (p *parser) parseOperation(pkgPath, pkgName string, astComments []*ast.Comment) error {

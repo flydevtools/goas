@@ -31,6 +31,11 @@ var flags = []cli.Flag{
 		Value: "oas.json",
 		Usage: "output file",
 	},
+	cli.StringFlag{
+		Name:  "output-fromat",
+		Value: "json",
+		Usage: "output file format",
+	},
 	cli.BoolFlag{
 		Name:  "debug",
 		Usage: "show debug message",
@@ -62,7 +67,7 @@ func action(c *cli.Context) error {
 		return err
 	}
 
-	fw := writer.NewFileWriter()
+	fw := writer.NewFileWriter(c.GlobalString("output-format"))
 	return fw.Write(openApiObject, c.GlobalString("output"))
 }
 

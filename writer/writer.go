@@ -6,16 +6,19 @@ import (
 	. "github.com/flydevtools/goas/openApi3Schema"
 	log "github.com/sirupsen/logrus"
 	"os"
+	"gopkg.in/yaml.v3"
 )
 
 type Writer interface {
 	Write(OpenAPIObject, string) error
 }
 
-type fileWriter struct{}
+type fileWriter struct{
+	format string
+}
 
-func NewFileWriter() *fileWriter {
-	return &fileWriter{}
+func NewFileWriter(format string) *fileWriter {
+	return &fileWriter{format}
 }
 
 func (w *fileWriter) Write(openApiObject OpenAPIObject, path string) error {
@@ -26,7 +29,13 @@ func (w *fileWriter) Write(openApiObject OpenAPIObject, path string) error {
 	}
 	defer fd.Close()
 
-	output, err := json.MarshalIndent(openApiObject, "", "  ")
+	var output []byte
+
+	if w.format == "yaml" {
+		output, err = yaml.Marshal(openApiObject)
+	} else {
+		output, err = json.MarshalIndent(openApiObject, "", "  ")
+	}
 	if err != nil {
 		return err
 	}
